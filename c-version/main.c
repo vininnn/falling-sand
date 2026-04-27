@@ -43,7 +43,7 @@ int main(){
                     int mouseX = rawX / SCALE;
                     int mouseY = rawY / SCALE;
 
-                    if (mouseX >= 0 && mouseX < WIDTH && mouseY >= 0 && mouseY < HEIGHT) {
+                    if (mouseX >= 0 && mouseX < WIDTH && mouseY >= 0 && mouseY < HEIGHT){
                         int index = mouseY * WIDTH + mouseX;
                         world[index].type = SAND;
                     }
@@ -51,7 +51,10 @@ int main(){
             }
         }
 
+        update_physics(world, WIDTH, HEIGHT);
         render_frame(graphics, world, WIDTH, HEIGHT);
+        // render delay
+        SDL_Delay(16);
     }
 
     close_graphics(graphics);

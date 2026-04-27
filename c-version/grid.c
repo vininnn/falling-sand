@@ -19,4 +19,19 @@ void free_grid(Cell* grid){
     }
 }
 
-void update_physics(Cell* grid, int width, int height){}
+void update_physics(Cell* grid, int width, int height){
+    for(int y = height - 2; y >= 0; y--){
+        for(int x = 0; x < width; x++){
+            int current = y * width + x;
+
+            if (grid[current].type == SAND){
+                int below = (y + 1) * width + x;
+
+                if (grid[below].type == EMPTY){
+                    grid[below].type = SAND;
+                    grid[current].type = EMPTY;
+                }
+            }
+        }    
+    }
+}
