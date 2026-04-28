@@ -34,7 +34,7 @@ void render_frame(RenderContext context, Cell* world, int widht, int height){
             int index = y * widht + x; // Maping 2D into 1D
 
             if (world[index].type == SAND){
-                SDL_SetRenderDrawColor(context.renderer, 255, 255, 255, 255);
+                SDL_SetRenderDrawColor(context.renderer, 194, 178, 128, 1);
                 SDL_RenderDrawPoint(context.renderer, x, y);
             }
         }

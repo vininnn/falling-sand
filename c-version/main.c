@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
 #include <SDL2/SDL.h>
 #include "grid.h"
 #include "render.h"
@@ -10,6 +12,7 @@
 #define SCALE 4
 
 int main(){
+    srand(time(NULL));
     RenderContext graphics = init_graphics(WIDTH, HEIGHT, SCALE);
     Cell* world = init_grid(WIDTH, HEIGHT);
 
@@ -21,33 +24,18 @@ int main(){
             if (event.type == SDL_QUIT){
                 running = false;
             }
+        }
+    
+        int rawX, rawY;
+        Uint32 mouseState = SDL_GetMouseState(&rawX, &rawY);
 
-            if (event.type == SDL_MOUSEBUTTONDOWN || event.type == SDL_MOUSEMOTION){
-                int rawX = 0;
-                int rawY = 0;
-                bool paint = false;
-                
-                if (event.type == SDL_MOUSEBUTTONDOWN){
-                    rawX = event.button.x;
-                    rawY = event.button.y;
-                    paint = true;
-                }  else if (event.type == SDL_MOUSEMOTION){
-                    if (event.motion.state & SDL_BUTTON_LMASK){
-                        rawX = event.motion.x;
-                        rawY = event.motion.y;
-                        paint = true;
-                    }
-                }
-
-                if (paint){
-                    int mouseX = rawX / SCALE;
-                    int mouseY = rawY / SCALE;
-
-                    if (mouseX >= 0 && mouseX < WIDTH && mouseY >= 0 && mouseY < HEIGHT){
-                        int index = mouseY * WIDTH + mouseX;
-                        world[index].type = SAND;
-                    }
-                }
+        if (mouseState & SDL_BUTTON(SDL_BUTTON_LEFT)){
+            int mouseX = rawX / SCALE;
+            int mouseY = rawY / SCALE;
+        
+            if (mouseX >= 0 && mouseX < WIDTH && mouseY >= 0 && mouseY < HEIGHT){
+                int index = mouseY * WIDTH + mouseX;
+                world[index].type = SAND;
             }
         }
 

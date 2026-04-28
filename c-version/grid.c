@@ -26,12 +26,34 @@ void update_physics(Cell* grid, int width, int height){
 
             if (grid[current].type == SAND){
                 int below = (y + 1) * width + x;
+                int below_right = (y + 1) * width + (x - 1);
+                int below_left = (y + 1) * width + (x + 1);
 
                 if (grid[below].type == EMPTY){
                     grid[below].type = SAND;
                     grid[current].type = EMPTY;
+                } else{
+                    int direction = (rand() % 2 == 0) ? 1 : -1;
+
+                    if (direction == 1){
+                        if (x + 1 < width && grid[below_right].type == EMPTY){
+                            grid[below_right].type = SAND;
+                            grid[current].type = EMPTY;
+                        } else if (x - 1 >= 0 && grid[below_left].type == EMPTY){
+                            grid[below_left].type = SAND;
+                            grid[current].type = EMPTY;
+                        }
+                    } else{
+                        if (x - 1 >= 0 && grid[below_left].type == EMPTY){
+                            grid[below_left].type = SAND;
+                            grid[current].type = EMPTY;
+                        } else if (x + 1 < width && grid[below_right].type == EMPTY){
+                            grid[below_right].type = SAND;
+                            grid[current].type = EMPTY;
+                        }
+                    }
                 }
-            }
+            } 
         }    
     }
 }
