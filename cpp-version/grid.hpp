@@ -19,5 +19,5 @@ public:
     Grid(int width, int height);
     ~Grid();
 
-    void update_physics(int width, int height);
+    void update_physics();
 };
