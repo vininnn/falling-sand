@@ -1,12 +1,13 @@
 #pragma once
 
 #include "grid.hpp"
+
 #include <SDL2/SDL.h>
 
 class RenderContext {
 private:
-    SDL_Window* window;
-    SDL_Renderer* renderer;
+    SDL_Window* window_;
+    SDL_Renderer* renderer_;
 
 public:
     RenderContext(int logical_width, int logical_height, int scale);

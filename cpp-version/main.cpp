@@ -1,9 +1,8 @@
 #include "grid.hpp"
 #include "render.hpp"
 
-#include <stdlib.h>
-#include <time.h>
-
+#include <cstdlib>
+#include <ctime>
 #include <SDL2/SDL.h>
 
 int main() {
@@ -11,7 +10,7 @@ int main() {
     constexpr int HEIGHT = 240;
     constexpr int SCALE = 4;
     
-    srand(time(NULL));
+    std::srand(std::time(nullptr));
 
     Grid world(WIDTH, HEIGHT);
     RenderContext graphics(WIDTH, HEIGHT, SCALE);
@@ -30,12 +29,7 @@ int main() {
         Uint32 mouseState = SDL_GetMouseState(&raw_x, &raw_y);
 
         if (mouseState & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-            int mouse_x = raw_x / SCALE;
-            int mouse_y = raw_y / SCALE;
-        
-            if (mouse_x >= 0 && mouse_x < WIDTH && mouse_y >= 0 && mouse_y < HEIGHT) {
-                world.set_cell(mouse_x, mouse_y, CellType::SAND);
-            }
+            world.set_cell(raw_x / SCALE, raw_y / SCALE, CellType::SAND);
         }
 
         world.update_physics();

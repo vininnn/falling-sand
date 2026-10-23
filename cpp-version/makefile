@@ -6,6 +6,7 @@ SDL_FLAGS := $(shell pkg-config --cflags sdl2)
 SDL_LIBS  := $(shell pkg-config --libs sdl2)
 
 SRCS := $(wildcard *.cpp)
+HDRS := $(wildcard *.hpp)
 TARGET := main
 
 .PHONY: all build run run-time clean
