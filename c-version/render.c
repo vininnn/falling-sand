@@ -24,14 +24,14 @@ RenderContext init_graphics(int logical_width, int logical_height, int scale){
     return context;
 }
 
-void render_frame(RenderContext context, Cell* world, int widht, int height){
+void render_frame(RenderContext context, Cell* world, int width, int height){
     SDL_SetRenderDrawColor(context.renderer, 0, 0, 0, 255);
     SDL_RenderClear(context.renderer);
     
     // Array linear (width * height * sizeof(Cell))
     for(int y = 0; y < height; y++){
-        for(int x = 0; x < widht; x++){
-            int index = y * widht + x; // Maping 2D into 1D
+        for(int x = 0; x < width; x++){
+            int index = y * width + x; // Maping 2D into 1D
 
             if (world[index].type == SAND){
                 SDL_SetRenderDrawColor(context.renderer, 194, 178, 128, 1);

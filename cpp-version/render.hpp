@@ -12,6 +12,6 @@ public:
     RenderContext(int logical_width, int logical_height, int scale);
     ~RenderContext();
 
-    void render_frame(Cell* world, int width, int height);
-    void close_grafics();
+    void render_frame(const Grid& grid);
+    void close_graphics();
 };

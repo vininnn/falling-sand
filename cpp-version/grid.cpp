@@ -52,3 +52,15 @@ void Grid::update_physics() {
         }
     }
 }
+
+const Cell* Grid::get_cell() const {
+    return cells;
+}
+
+int Grid::get_width() const {
+    return width;
+}
+
+int Grid::get_height() const {
+    return height;
+}

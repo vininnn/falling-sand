@@ -20,4 +20,8 @@ public:
     ~Grid();
 
     void update_physics();
+    
+    const Cell* get_cell() const;
+    int get_width() const;
+    int get_height() const;
 };
