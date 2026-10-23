@@ -1,8 +1,9 @@
+#include <SDL2/SDL.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h>
 #include <time.h>
-#include <SDL2/SDL.h>
+
 #include "grid.h"
 #include "render.h"
 
@@ -41,6 +42,7 @@ int main(){
 
         update_physics(world, WIDTH, HEIGHT);
         render_frame(graphics, world, WIDTH, HEIGHT);
+
         // render delay
         SDL_Delay(16);
     }

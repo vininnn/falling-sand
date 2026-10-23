@@ -4,7 +4,6 @@
 typedef enum {
     EMPTY = 0,
     SAND = 1,
-    //WALL = 2,
 } CellType;
 
 typedef struct {

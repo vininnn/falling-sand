@@ -1,4 +1,5 @@
 #include <stdlib.h>
+
 #include "grid.h"
 
 Cell* init_grid(int width, int height){
@@ -26,8 +27,8 @@ void update_physics(Cell* grid, int width, int height){
 
             if (grid[current].type == SAND){
                 int below = (y + 1) * width + x;
-                int below_right = (y + 1) * width + (x - 1);
-                int below_left = (y + 1) * width + (x + 1);
+                int below_left = (y + 1) * width + (x - 1);
+                int below_right = (y + 1) * width + (x + 1);
 
                 if (grid[below].type == EMPTY){
                     grid[below].type = SAND;

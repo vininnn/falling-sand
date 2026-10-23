@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #include "render.h"
 
 RenderContext init_graphics(int logical_width, int logical_height, int scale){
