@@ -25,8 +25,8 @@ void Grid::update_physics() {
                 int below_left = (y + 1) * width + (x + 1);
 
                 if (cells[below].type == CellType::EMPTY) {
-                    cells[below].type == CellType::SAND;
-                    cells[current].type == CellType::EMPTY;
+                    cells[below].type = CellType::SAND;
+                    cells[current].type = CellType::EMPTY;
                 } else {
                     int direction = (rand() % 2 == 0) ? 1 : -1;
 
@@ -51,6 +51,11 @@ void Grid::update_physics() {
             }
         }
     }
+}
+
+void Grid::set_cell(int x, int y, CellType type) {
+    int index = y * width + x;
+    cells[index].type = type;
 }
 
 const Cell* Grid::get_cell() const {

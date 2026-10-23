@@ -1,6 +1,7 @@
 #include "render.hpp"
 #include "grid.hpp"
 
+#include <iostream>
 #include <SDL2/SDL.h>
 
 RenderContext::RenderContext(int logical_width, int logical_height, int scale)
@@ -9,7 +10,7 @@ RenderContext::RenderContext(int logical_width, int logical_height, int scale)
 {
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("Error SDL: %s\n", SDL_GetError());
+        std::cout << "Error SDL: " << SDL_GetError() << "\n";
         return;
     }
 
@@ -24,8 +25,8 @@ RenderContext::RenderContext(int logical_width, int logical_height, int scale)
         &renderer
     );
 
-    if (window || renderer) {
-        printf("Error build/render window.\n");
+    if (!window || !renderer) {
+        std::cout << "Error build/render window.\n";
         return;
     }
 
@@ -44,13 +45,12 @@ void RenderContext::render_frame(const Grid& grid) {
     int height = grid.get_height();
     int width = grid.get_width();
     
-    // Array linear (width * height * sizeof(Cell))
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-            int index = y * width + x; // Maping 2D into 1D
+            int index = y * width + x;
 
             if (cells[index].type == CellType::SAND) {
-                SDL_SetRenderDrawColor(renderer, 194, 178, 128, 1);
+                SDL_SetRenderDrawColor(renderer, 194, 178, 128, 255);
                 SDL_RenderDrawPoint(renderer, x, y);
             }
         }

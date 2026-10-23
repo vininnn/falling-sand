@@ -21,6 +21,10 @@ public:
 
     void update_physics();
     
+    // setter
+    void set_cell(int x, int y, CellType type);
+
+    // getter
     const Cell* get_cell() const;
     int get_width() const;
     int get_height() const;
